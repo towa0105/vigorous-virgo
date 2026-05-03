@@ -1,0 +1,62 @@
+---
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import { description as defaultDescription, lang, title as defaultTitle } from "../const.js";
+
+const { title = defaultTitle, description = defaultDescription } = Astro.props;
+---
+
+<!doctype html>
+<html lang={lang}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="description" content={description} />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" href="/favicon.ico" />
+  </head>
+  <body>
+    <Header />
+    <main>
+      <slot />
+    </main>
+    <Footer />
+  </body>
+</html>
+
+<style is:global lang="scss">
+  :root {
+    font-family: "Hiragino Sans", "Yu Gothic", sans-serif;
+    line-height: 1.5;
+    color: #1d2a1f;
+    background: #f4f7ef;
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+
+  body {
+    margin: 0;
+    min-width: 320px;
+  }
+
+  main {
+    width: min(960px, calc(100% - 2rem));
+    margin: 0 auto;
+    padding: 4rem 0;
+  }
+
+  h1 {
+    margin: 0 0 1rem;
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    line-height: 1.1;
+  }
+
+  p {
+    margin: 0;
+  }
+</style>

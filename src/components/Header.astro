@@ -1,0 +1,44 @@
+---
+import { title } from "../const.js";
+---
+
+<header>
+  <a class="brand" href="/">{title}</a>
+  <nav aria-label="Primary">
+    <ul>
+      <li><a href="/">Home</a></li>
+    </ul>
+  </nav>
+</header>
+
+<style lang="scss">
+  header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 1.25rem 1.5rem;
+    border-bottom: 1px solid #d9e1d2;
+    background: #fbfcf8;
+  }
+
+  .brand {
+    color: #29412d;
+    font-size: 1.5rem;
+    font-weight: 700;
+    text-decoration: none;
+  }
+
+  ul {
+    display: flex;
+    gap: 1rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+</style>
