@@ -8,10 +8,26 @@ import { x_name } from "../const.js";
 />
 <footer>
   <div class="nav">
-    <p><a href="">a</a></p>
-    <p><a href="">b</a></p>
-    <p><a href="">c</a></p>
-    <p><a href="">d</a></p>
+    <div class="home">
+      <span class="material-symbols-outlined"> home </span>
+      <p><a href="">a</a></p>
+    </div>
+    <div class="home">
+      <span class="material-symbols-outlined"> home </span>
+      <p><a href="">状態</a></p>
+    </div>
+    <div class="home">
+      <span class="material-symbols-outlined"> home </span>
+      <p><a href="">home</a></p>
+    </div>
+    <div class="home">
+      <span class="material-symbols-outlined"> home </span>
+      <p><a href="">d</a></p>
+    </div>
+    <div class="home">
+      <span class="material-symbols-outlined"> home </span>
+      <p><a href="">e</a></p>
+    </div>
   </div>
 </footer>
 
@@ -20,7 +36,18 @@ import { x_name } from "../const.js";
     display: flex;
     justify-content: center;
     gap: 32px;
+    position: fixed; /* 画面固定 */
+    bottom: 0;
+    width: 100%;
     padding: 1.6rem 1rem 2rem;
+    background-color: #fff;
+    box-shadow: 10px;
+    .home {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
     a {
       text-decoration: none;
       color: #4b5a45;
