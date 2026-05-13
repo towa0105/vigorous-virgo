@@ -1,8 +1,128 @@
 ---
+import { date } from "astro:schema";
 import Layout from "../layouts/Layout.astro";
+
+const temperature = 20;
+const humidity = 20;
+const soilMoisture = "やや乾";
+let humidityMessage = "";
+let temperatureMessage = "";
+let soilMoistureMessage = "";
+let d = new Date();
+const hours = d.getHours();
+// const hours = 20;
+console.log(hours);
+
+if (humidity < 59) {
+	humidityMessage = "乾燥しています。\n花が落ちてしまうリスクがあります";
+}
+if (humidity > 81) {
+	humidityMessage = "多湿状態です。\n病気や根腐れの原因となります";
+}
+if (humidity >= 60 && humidity <= 80) {
+	humidityMessage = "最適な湿度です\n維持してください";
+}
+if (hours >= 9 && hours < 18) {
+	if (temperature < 25) {
+		temperatureMessage = "気温が低すぎます";
+	}
+	if (temperature > 30) {
+		temperatureMessage = "気温が高すぎます";
+	}
+	if (temperature >= 25 && temperature <= 30) {
+		temperatureMessage = "最適温度です";
+	}
+} else if (hours >= 18 || hours < 9) {
+	if (temperature < 10) {
+		temperatureMessage = "気温が低すぎます";
+	}
+	if (temperature > 15) {
+		temperatureMessage = "気温が高すぎます";
+	}
+	if (temperature >= 10 && temperature <= 15) {
+		temperatureMessage = "最適温度です";
+	}
+}
 ---
 
 <Layout>
-  <h1>農業IOT</h1>
-  <p>Astro の開発を始められる状態まで環境を整えました。</p>
+	<div class="main">
+		<h1>畑の状態</h1>
+		<div class="date">
+			<div class="value">
+				<span class="material-symbols-outlined">
+					device_thermostat
+				</span>
+				<h2>温度</h2>
+				<p>{temperature}</p>
+			</div>
+			<div class="value">
+				<span class="material-symbols-outlined"> cool_to_dry </span>
+				<h2>湿度</h2>
+				<p>{humidity}</p>
+			</div>
+			<div class="value">
+				<span class="material-symbols-outlined"> psychiatry </span>
+				<h2>土壌水分</h2>
+				<p>{soilMoisture}</p>
+			</div>
+		</div>
+		<div class="humidity_content">
+			<h3>湿度</h3>
+			{humidityMessage && <p class="message">{humidityMessage}</p>}
+		</div>
+		<div class="tempera_content">
+			<h3>温度</h3>
+			{temperatureMessage && <p class="message">{temperatureMessage}</p>}
+		</div>
+		<div class="humidity_content">
+			<h3>土壌</h3>
+			{humidityMessage && <p class="message">{humidityMessage}</p>}
+		</div>
+
+		<div class="btn">
+			<a href="#">詳しく見る</a>
+		</div>
+	</div>
 </Layout>
+
+<style lang="scss">
+	.main {
+		height: 365px;
+		background-color: #fff;
+		box-shadow: 4px;
+		padding: 24px;
+	}
+	.date {
+		display: flex;
+		gap: 40px;
+		justify-content: center;
+		.value {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			flex-direction: column;
+			h2 {
+				margin: 0;
+			}
+		}
+	}
+	.message {
+		white-space: pre-line;
+	}
+	.humidity_content {
+		background-color: #eee;
+	}
+	.btn {
+		font-size: 18px;
+		display: flex;
+		justify-content: center;
+		background-color: #6fcf97;
+		border-radius: 8px;
+		box-shadow: 10px #000;
+		a {
+			color: #fff;
+			text-decoration: none;
+		}
+	}
+</style>
